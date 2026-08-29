@@ -1,6 +1,10 @@
 package com.bank.model;
 
-public class Account {
+import com.bank.interfaces.Transactable;
+
+import javax.swing.*;
+
+public abstract class Account implements Transactable {
     private String accountNumber;
     private String accountHolder;
     private double balance;
@@ -33,19 +37,26 @@ public class Account {
         this.accountHolder = accountHolder;
     }
 
+    protected void adjustBalance(double delta){
+        balance += delta;
+    }
+
+    @Override
     public void deposit(double amount){
         if(amount <= 0){
             System.out.println("Amount must be positive");
         }
-        balance += amount;
+        adjustBalance(amount);
         System.out.println("Deposit amount: "+amount+" Total balance: "+balance);
     }
+
 
     public void deposit(double amount, String remark){
         deposit(amount);
         System.out.println("Remark: "+remark);
     }
 
+    @Override
     public void withdraw(double amount){
         if(amount <= 0){
             System.out.println("Amount must be positive");
@@ -54,14 +65,12 @@ public class Account {
             System.out.println("Insufficient balance");
         }
         else{
-            balance -= amount;
+            adjustBalance(-amount);
             System.out.println("withdraw amount : "+amount+" Updated balance: "+balance);
         }
     }
 
-    public double calculateInterest(){
-        return 0.0;
-    }
+    public abstract double calculateInterest();
 
     public void display(){
         System.out.println("Account Number: "+accountNumber+"\nAccount Holder Name: "+accountHolder+"\nBalance: "+balance);

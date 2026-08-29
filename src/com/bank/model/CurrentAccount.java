@@ -1,5 +1,7 @@
 package com.bank.model;
 
+import java.util.Base64;
+
 public class CurrentAccount extends Account{
     private double overdraftLimit;
 
@@ -22,12 +24,13 @@ public class CurrentAccount extends Account{
             System.out.println("Withdrawal exceeds overdraft limit.");
             return;
         }
-        else if(amount <= getBalance()){
-            super.withdraw(amount);
-        }
-        else {
-            System.out.println("Overdraft uses. withdraw: "+amount);
-        }
+        adjustBalance(-amount);
+        System.out.println("Withdraw: "+amount+" Updated balance: "+getBalance());
+    }
+
+    @Override
+    public double calculateInterest(){
+        return 0.0;
     }
 
 }
