@@ -1,13 +1,38 @@
 package com.bank.model;
 
 import com.bank.interfaces.Transactable;
+import java.sql.SQLOutput;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-import javax.swing.*;
 
 public abstract class Account implements Transactable {
-    private String accountNumber;
+    private final String accountNumber;
     private String accountHolder;
     private double balance;
+
+    private final ArrayList<String> transactionHistory = new ArrayList<>();
+
+    public void addTransaction(String transaction){
+        transactionHistory.add(transaction);
+    }
+
+    //show transaction history
+    public void showTransactionHistory() {
+
+        System.out.println("\n========================================");
+        System.out.println("TRANSACTION HISTORY : " + accountNumber);
+        System.out.println("========================================");
+
+        if(transactionHistory.isEmpty()){
+            System.out.println("No transactions found.");
+            return;
+        }
+
+        transactionHistory.forEach(System.out::println);
+
+        System.out.println("========================================");
+    }
 
     public Account(String accountNumber, String accountHolder, double balance){
         this.accountNumber = accountNumber;
@@ -45,9 +70,13 @@ public abstract class Account implements Transactable {
     public void deposit(double amount){
         if(amount <= 0){
             System.out.println("Amount must be positive");
+            return;
         }
         adjustBalance(amount);
-        System.out.println("Deposit amount: "+amount+" Total balance: "+balance);
+        addTransaction(
+                LocalDateTime.now()+" | Deposited "+amount+" Balance "+getBalance()
+        );
+        //System.out.println("Deposit amount: "+amount+" Total balance: "+balance);
     }
 
 
@@ -66,13 +95,26 @@ public abstract class Account implements Transactable {
         }
         else{
             adjustBalance(-amount);
-            System.out.println("withdraw amount : "+amount+" Updated balance: "+balance);
+            addTransaction(LocalDateTime.now()+" | withdraw "+amount+" Balance: "+getBalance()
+            );
         }
     }
 
     public abstract double calculateInterest();
 
-    public void display(){
-        System.out.println("Account Number: "+accountNumber+"\nAccount Holder Name: "+accountHolder+"\nBalance: "+balance);
+    public void display() {
+        System.out.println("""
+            ============================
+                  ACCOUNT DETAILS
+            ============================
+            Account No   : %s
+            Holder Name  : %s
+            Balance      : ₹%.2f
+            ============================
+            """.formatted(
+                accountNumber,
+                accountHolder,
+                balance
+        ));
     }
 }

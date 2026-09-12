@@ -9,58 +9,58 @@ public class Main {
     public static void main(String[] args) {
         Bank bank = new Bank();
 
-        bank.openAccount(new SavingsAccount("SA1001", "Soumitra Das", 0.0, 5.5));
-        bank.openAccount(new CurrentAccount("CA1002","Ram Kumar",10000.0, 2000.0));
+        //OPen Accounts
+        SavingsAccount acc1 = new SavingsAccount(
+                "SA1001",
+                "Soumitra Das",
+                0.0,
+                5.5);
 
+        CurrentAccount acc2 = new CurrentAccount(
+                "CA1001",
+                "Ram Kumar",
+                10000.0,
+                2000.0);
+
+        bank.openAccount(acc1);
+        bank.openAccount(acc2);
+
+
+        //Transaction
+        acc1.deposit(5030);
+        acc2.withdraw(1000);
+
+        //Fund Transfer
+        bank.fundTransfer(
+                "SA1001",
+                "CA1001",
+                250
+        );
+
+        //Display all accounts
+        System.out.println("\n========== ACCOUNT LIST ==========\n");
         bank.listAllAccount();
 
-        Account found = bank.findAccount("CA1002");
-        if(found != null){
-            found.deposit(500);
+        //Search Account
+        System.out.println("\n========== SEARCH ACCOUNT ==========\n");
+        Account account = bank.findAccount("SA1001");
+        if(account != null){
+            account.display();
         }
 
-        bank.closeAccount("SA1001");
+        //Transaction History
+        System.out.println("\n========== TRANSACTION HISTORY ==========\n");
+        acc1.showTransactionHistory();
+        System.out.println();
+        acc2.showTransactionHistory();
+
+        // Close Account
+        System.out.println("\n========== CLOSE ACCOUNT ==========\n");
+        bank.closeAccount("CA1001");
+
+        // Remaining Accounts
+        System.out.println("\n========== FINAL ACCOUNT LIST ==========\n");
         bank.listAllAccount();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        SavingsAccount s1 = new SavingsAccount("SA1001", "Soumitra Das", 0.0, 5.5);
-//        CurrentAccount c1 = new CurrentAccount("CA1002","Ram Kumar",10000.0, 2000.0);
-//        System.out.println("----- Saving Account -----");
-//        s1.deposit(2000,"salary credited");
-//        System.out.println("Interset amount: "+s1.calculateInterest());
-//        s1.display();
-//
-//        System.out.println("\n----- Current Account -----");
-//        c1.withdraw(11000);
-//        c1.display();
-//        System.out.println("Interest: "+c1.calculateInterest());
-//
-//        c1.withdraw(1000);
-//        c1.display();
-//
-//        c1.withdraw(1000);
-//        c1.display();
-
-        //Account is an abstract class can not be initiated.
-        //Account a = new Account("m", "122",20.24);
-
 
 
     }
