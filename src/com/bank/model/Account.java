@@ -1,5 +1,7 @@
 package com.bank.model;
 
+import com.bank.exceptions.InsufficientFundsException;
+import com.bank.exceptions.InvalidAmountException;
 import com.bank.interfaces.Transactable;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
@@ -67,31 +69,39 @@ public abstract class Account implements Transactable {
     }
 
     @Override
-    public void deposit(double amount){
+    public void deposit(double amount) throws InvalidAmountException{
+
         if(amount <= 0){
-            System.out.println("Amount must be positive");
-            return;
+            throw new InvalidAmountException(
+                    "Deposit amount must be greater than zero"
+            );
         }
         adjustBalance(amount);
         addTransaction(
                 LocalDateTime.now()+" | Deposited "+amount+" Balance "+getBalance()
         );
-        //System.out.println("Deposit amount: "+amount+" Total balance: "+balance);
+
     }
 
 
-    public void deposit(double amount, String remark){
+    public void deposit(double amount, String remark)
+            throws InvalidAmountException {
+
         deposit(amount);
         System.out.println("Remark: "+remark);
     }
 
     @Override
-    public void withdraw(double amount){
+    public void withdraw(double amount)
+            throws InvalidAmountException, InsufficientFundsException {
+
         if(amount <= 0){
-            System.out.println("Amount must be positive");
+            throw new InvalidAmountException("Withdraw amount must be greater than zero");
+            //System.out.println("Amount must be positive");
         }
         else if(amount > getBalance()){
-            System.out.println("Insufficient balance");
+            throw new InsufficientFundsException("Insufficient amount");
+            //System.out.println("Insufficient balance");
         }
         else{
             adjustBalance(-amount);

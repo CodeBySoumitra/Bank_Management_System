@@ -1,5 +1,8 @@
 package com.bank.service;
 
+import com.bank.exceptions.AccountNotFoundException;
+import com.bank.exceptions.InsufficientFundsException;
+import com.bank.exceptions.InvalidAmountException;
 import com.bank.model.Account;
 
 import java.time.LocalDateTime;
@@ -67,18 +70,24 @@ public class Bank {
         //fund transfer
         public void fundTransfer(String fromAccount,
                                  String toAccount,
-                                 double amount){
+                                 double amount)
+                throws InvalidAmountException,
+                InsufficientFundsException,
+                AccountNotFoundException {
+
             Account sender = findAccount(fromAccount);
             Account receiver = findAccount(toAccount);
 
             if(sender == null || receiver == null){
-                System.out.println("no account found");
-                return;
+                throw new AccountNotFoundException("Account not found");
+//                System.out.println("no account found");
+//                return;
             }
 
             if(amount <= 0 || sender.getBalance()<0){
-                System.out.println("Invalid amount");
-                return;
+                throw new InvalidAmountException("Insufficient amount in sender account");
+//                System.out.println("Invalid amount");
+//                return;
             }
 
             sender.withdraw(amount);
