@@ -1,4 +1,14 @@
-# Bank Management System
+# 🏦 Bank Management System
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-17+-orange?style=for-the-badge&logo=openjdk" />
+  <img src="https://img.shields.io/badge/OOP-Concepts-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Status-Day%207-success?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&weight=600&size=24&pause=1000&color=00BFFF&center=true&vCenter=true&width=700&lines=Java+Bank+Management+System;OOP+%7C+Collections+%7C+Exception+Handling;Built+for+Learning+and+Portfolio+Projects" />
+</p>
 
 A console-based Bank Management System developed in Java that simulates core banking operations such as account creation, deposits, withdrawals, fund transfers, and transaction tracking.
 
@@ -74,6 +84,14 @@ Business rule violations are handled through custom exceptions instead of generi
 - Java Time API (`LocalDateTime`)
 - Custom Exception Handling
 - Object-Oriented Programming
+
+
+## 🛠️ Tech Stack
+
+![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=for-the-badge&logo=openjdk)
+![OOP](https://img.shields.io/badge/OOP-Principles-blue?style=for-the-badge)
+![Collections](https://img.shields.io/badge/Collections-ArrayList-green?style=for-the-badge)
+![Exception Handling](https://img.shields.io/badge/Exception-Handling-red?style=for-the-badge)
 
 ### Planned Technologies
 
