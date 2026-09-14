@@ -7,22 +7,23 @@ import com.bank.model.Account;
 import com.bank.model.CurrentAccount;
 import com.bank.model.SavingsAccount;
 import com.bank.service.Bank;
+import com.bank.util.AccountNumberGenerator;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidAmountException, AccountNotFoundException {
         Bank bank = new Bank();
 
         //OPen Accounts
         SavingsAccount acc1 = new SavingsAccount(
-                "SA1001",
+                AccountNumberGenerator.generateSavingsAccountNumber(),
                 "Soumitra Das",
                 0.0,
                 5.5);
 
         CurrentAccount acc2 = new CurrentAccount(
-                "CA1001",
+                AccountNumberGenerator.generateCurrentAccountNumber(),
                 "Ram Kumar",
-                10000.0,
+                0.0,
                 2000.0);
 
         bank.openAccount(acc1);
@@ -31,16 +32,17 @@ public class Main {
         try {
             //Transaction
             acc1.deposit(5030);
-            acc2.withdraw(1000);
+            acc2.deposit(10000);
 
             //Fund Transfer
             bank.fundTransfer(
                     "SA1001",
                     "CA1001",
-                    25000
+                    250
             );
 
             acc2.withdraw(10000);
+            acc2.display();
             acc1.withdraw(15000);
         }
         catch (InvalidAmountException e){

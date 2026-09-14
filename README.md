@@ -3,12 +3,10 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Java-17+-orange?style=for-the-badge&logo=openjdk" />
   <img src="https://img.shields.io/badge/OOP-Concepts-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Status-Day%207-success?style=for-the-badge" />
-</p>
+<img src="https://img.shields.io/badge/Status-Day%208-success?style=for-the-badge" /></p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&weight=600&size=24&pause=1000&color=00BFFF&center=true&vCenter=true&width=700&lines=Java+Bank+Management+System;OOP+%7C+Collections+%7C+Exception+Handling;Built+for+Learning+and+Portfolio+Projects" />
-</p>
+<img src="https://readme-typing-svg.herokuapp.com?font=Poppins&weight=600&size=24&pause=1000&color=00BFFF&center=true&vCenter=true&width=700&lines=Java+Bank+Management+System;OOP+%7C+Collections+%7C+Exception+Handling;Strings+%7C+Regex+%7C+Validation;Built+for+Learning+and+Portfolio+Projects" /></p>
 
 A console-based Bank Management System developed in Java that simulates core banking operations such as account creation, deposits, withdrawals, fund transfers, and transaction tracking.
 
@@ -53,6 +51,15 @@ Implemented custom exceptions:
 - `InsufficientFundsException`
 - `AccountNotFoundException`
 
+### Input Validation & Utilities
+- Regex-based account holder validation
+- Account number validation
+- Transaction amount validation
+- Automatic account number generation
+- Name formatting and sanitization
+- Case-insensitive account search
+
+
 ---
 
 ## OOP Concepts Demonstrated
@@ -84,6 +91,9 @@ Business rule violations are handled through custom exceptions instead of generi
 - Java Time API (`LocalDateTime`)
 - Custom Exception Handling
 - Object-Oriented Programming
+- Java Regular Expressions (Regex)
+- StringBuilder
+- Utility Classes
 
 
 ## 🛠️ Tech Stack
@@ -122,10 +132,15 @@ src/
         ├── service/
         │   └── Bank.java
         │
-        └── exception/
-            ├── InvalidAmountException.java
-            ├── InsufficientFundsException.java
-            └── AccountNotFoundException.java
+        ├── exception/
+        │   ├── InvalidAmountException.java
+        │   ├── InsufficientFundsException.java
+        │   └── AccountNotFoundException.java
+        │
+        └── util/
+            ├── ValidationUtil.java
+            ├── StringUtil.java
+            └── AccountNumberGenerator.java
 ```
 
 ---
@@ -242,8 +257,6 @@ This project demonstrates practical understanding of:
 
 ## Future Enhancements
 
-- Regex-based input validation
-- Auto-generated account numbers
 - File-based persistence
 - MySQL database integration using JDBC
 - Concurrent transaction processing
@@ -255,19 +268,19 @@ This project demonstrates practical understanding of:
 ## Development Progress
 
 | Day | Concept | Status |
-|------|----------|----------|
-| 1 | Classes, Objects, Constructors | ✅ |
-| 2 | Encapsulation | ✅ |
-| 3 | Inheritance | ✅ |
-| 4 | Polymorphism | ✅ |
-| 5 | Abstraction & Interfaces | ✅ |
-| 6 | Collections, Fund Transfer & Transaction History | ✅ |
-| 7 | Custom Exception Handling | ✅ |
-| 8 | Strings & Validation | ⏳ |
-| 9 | File I/O | ⏳ |
-| 10 | JDBC & MySQL | ⏳ |
-| 11 | Multithreading | ⏳ |
-| 12 | CLI Integration | ⏳ |
+|------|----------|------|
+| 1 | Classes, Objects, Constructors | ✅    |
+| 2 | Encapsulation | ✅    |
+| 3 | Inheritance | ✅    |
+| 4 | Polymorphism | ✅    |
+| 5 | Abstraction & Interfaces | ✅    |
+| 6 | Collections, Fund Transfer & Transaction History | ✅    |
+| 7 | Custom Exception Handling | ✅    |
+| 8 | Strings & Validation | ✅     |
+| 9 | File I/O | ⏳    |
+| 10 | JDBC & MySQL | ⏳    |
+| 11 | Multithreading | ⏳    |
+| 12 | CLI Integration | ⏳    |
 
 ---
 

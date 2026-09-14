@@ -24,7 +24,7 @@ public class Bank {
         //Account find method
         public Account findAccount(String accountNumber){
             for(Account acc:accounts){
-                if(acc.getAccountNumber().equals(accountNumber)){
+                if(acc.getAccountNumber().equalsIgnoreCase(accountNumber)){
                     return acc;
                 }
             }
@@ -94,11 +94,15 @@ public class Bank {
             receiver.deposit(amount);
 
             sender.addTransaction(
-                    LocalDateTime.now()+" | Transferred ₹"+amount+" to "+receiver.getAccountNumber()
+                    LocalDateTime.now()+" | [TRANSFER] To: "
+                            + receiver.getAccountNumber()
+                            + " | ₹" + amount
             );
 
             receiver.addTransaction(
-                    LocalDateTime.now()+" | Received ₹"+amount+" from "+sender.getAccountNumber()
+                    LocalDateTime.now()+" | [Received]  From: "
+                            +sender.getAccountNumber()
+                            + " | ₹" + amount
             );
 
             System.out.println("Transfer Successful");
